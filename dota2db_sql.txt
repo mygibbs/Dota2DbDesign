@@ -1,0 +1,324 @@
+-- create db
+CREATE DATABASE Dota2db
+
+-- create champion tables
+CREATE TABLE Champion (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255),
+    Description varchar(255),
+    Type_Id int
+)
+
+CREATE TABLE ChampionType (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255)
+)
+
+CREATE TABLE ChampionAttribute (
+    Id int NOT NULL PRIMARY KEY,
+    Champion_Id int,
+    Attribute_Id int,
+)
+
+CREATE TABLE ChampionSpell (
+    Id int NOT NULL PRIMARY KEY,
+    Champion_Id int,
+    Spell_Id int,
+)
+
+CREATE TABLE Spell (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255),
+    Description varchar(255),
+    HotKey char(1),
+    Notes varchar(MAX)
+)
+
+CREATE TABLE Item (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255),
+    Description varchar(255),
+    Cost int,
+    ItemLocation_Id int,
+    ActiveAbility varchar(255),
+    PassiveAbility varchar(255),
+    Bonus varchar(255),
+)
+
+CREATE TABLE ItemLocation (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255),
+)
+
+CREATE TABLE Location (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255),
+)
+
+CREATE TABLE Stat (
+    Id int NOT NULL PRIMARY KEY,
+    StatName_Id int,
+    Value varchar(255)
+)
+
+CREATE TABLE StatName (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255)
+)
+
+CREATE TABLE AttributeName (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255),
+)
+
+CREATE TABLE Attribute (
+    Id int NOT NULL PRIMARY KEY,
+    AttributeName_Id int,
+    Value varchar(255)
+)
+
+CREATE TABLE TargetingType (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255),
+)
+
+CREATE TABLE ItemRecipe (
+    Id int NOT NULL PRIMARY KEY,
+    Item_Id int,
+    Component_Id int,
+)
+
+CREATE TABLE AbilityType (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255),
+)
+
+CREATE TABLE ChampionRole (
+    Id int NOT NULL PRIMARY KEY,
+    Role_Id int,
+    Champion_Id int
+)
+
+CREATE TABLE ChampionStat (
+    Id int NOT NULL PRIMARY KEY,
+    Level int,
+    Stat_Id int,
+    Champion_Id int,
+)
+
+CREATE TABLE ChampionProperty (
+    Id int NOT NULL PRIMARY KEY,
+    Property_Id int,
+    Champion_Id int
+)
+
+CREATE TABLE Property (
+    Id int NOT NULL PRIMARY KEY,
+    PropertyName_Id int,
+    Value varchar(255)
+)
+
+CREATE TABLE PropertyName (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255)
+)
+
+CREATE TABLE Role (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255),
+    Description varchar(255)
+)
+
+CREATE TABLE AllowedTarget (
+    Id int NOT NULL PRIMARY KEY,
+    Name varchar(255)
+)
+
+CREATE TABLE SpellAbilityType (
+    Id int NOT NULL PRIMARY KEY,
+    Spell_Id int,
+    AbilityType_Id int
+)
+
+CREATE TABLE SpellTargetingType (
+    Id int NOT NULL PRIMARY KEY,
+    Spell_Id int,
+    TargetingType_Id int
+)
+
+CREATE TABLE SpellAllowedTarget (
+    Id int NOT NULL PRIMARY KEY,
+    AllowedTarget_Id int,
+    Spell_Id int
+)
+
+CREATE TABLE SpellAttribute (
+    Id int NOT NULL PRIMARY KEY,
+    Spell_Id int,
+    Value varchar(255),
+)
+
+CREATE TABLE Pet (
+    Id ` NOT NULL PRIMARY KEY,
+    Name varchar(255),
+    Description varchar(255),
+)
+
+CREATE TABLE PetStat (
+    Id int NOT NULL PRIMARY KEY,
+    Level int,
+    Pet_Id int,
+    Stat_Id int
+)
+
+CREATE TABLE PetSpell (
+    Id int NOT NULL PRIMARY KEY,
+    Pet_Id int,
+    Spell_Id int
+)
+
+-- dump database
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Champion'))
+BEGIN
+  DROP TABLE Champion 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'ChampionType'))
+BEGIN
+  DROP TABLE ChampionType 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'ChampionAttribute'))
+BEGIN
+  DROP TABLE ChampionAttribute
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'ChampionSpell'))
+BEGIN
+  DROP TABLE ChampionSpell 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Spell'))
+BEGIN
+  DROP TABLE Spell 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Item'))
+BEGIN
+  DROP TABLE Item 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'ItemLocation'))
+BEGIN
+  DROP TABLE ItemLocation 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Location'))
+BEGIN
+  DROP TABLE Location 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Stat'))
+BEGIN
+  DROP TABLE Stat 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'StatName'))
+BEGIN
+  DROP TABLE StatName 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'AttributeName'))
+BEGIN
+  DROP TABLE AttributeName 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Attribute'))
+BEGIN
+  DROP TABLE Attribute 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'TargetingType'))
+BEGIN
+  DROP TABLE TargetingType 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'ItemRecipe'))
+BEGIN
+  DROP TABLE ItemRecipe 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'AbilityType'))
+BEGIN
+  DROP TABLE AbilityType 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'ChampionRole'))
+BEGIN
+  DROP TABLE ChampionRole 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'ChampionStat'))
+BEGIN
+  DROP TABLE ChampionStat 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'ChampionProperty'))
+BEGIN
+  DROP TABLE ChampionProperty 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Property'))
+BEGIN
+  DROP TABLE Property 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'PropertyName'))
+BEGIN
+  DROP TABLE PropertyName 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Role'))
+BEGIN
+  DROP TABLE Role 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'AllowedTarget'))
+BEGIN
+  DROP TABLE AllowedTarget 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'SpellAbilityType'))
+BEGIN
+  DROP TABLE SpellAbilityType 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'SpellTargetingType'))
+BEGIN
+  DROP TABLE SpellTargetingType 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'SpellAllowedTarget'))
+BEGIN
+  DROP TABLE SpellAllowedTarget 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'SpellAttribute'))
+BEGIN
+  DROP TABLE SpellAttribute 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Pet'))
+BEGIN
+  DROP TABLE Pet 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'PetStat'))
+BEGIN
+  DROP TABLE PetStat 
+END
+
+IF (EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'PetSpell'))
+BEGIN
+  DROP TABLE PetSpell 
+END
